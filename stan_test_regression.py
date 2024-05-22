@@ -45,13 +45,12 @@ fit_df = fit.to_frame()
 
 fit_df.to_csv('./lin_regression.csv')
 
-fit_df = pd.read_csv('./lin_regression.csv')
-
+# Construct a regression line using means of alpha and beta samples.
 alpha = np.mean(fit_df['alpha'])
 beta = np.mean(fit_df['beta'])
-
 xy_df['reg_line'] = alpha + beta*xy_df.gre
 
+# Plotting
 ax = sns.relplot(data = xy_df, x='gre', y='admit_chance')
 ax.map_dataframe(sns.lineplot, 'gre', 'reg_line', color='orange')
 ax.set(xlabel='GRE Score', ylabel='Admit Chance', title='Stan Regression Test')
